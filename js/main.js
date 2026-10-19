@@ -45,18 +45,18 @@
     const missing = figure.querySelector('[data-photo-missing]');
     const hint = figure.querySelector('[data-zoom-hint]');
     if (!img || !link) return;
-    const caption = data.photoCaption || figure.querySelector('figcaption').textContent;
+    const caption = figure.dataset.photoCaption || data.photoCaption || figure.querySelector('figcaption').textContent;
     figure.querySelector('figcaption').textContent = caption;
     function update() {
       const ready = img.complete && img.naturalWidth > 0;
       link.hidden = !ready;
       missing.hidden = ready;
       if (hint) hint.hidden = !ready;
-      figure.querySelector('figcaption').textContent = ready ? caption : '幼い頃によく遊んだ京都・祇園の辰巳神社を背景に重ねた、60代の写真を掲載する予定です。';
+      figure.querySelector('figcaption').textContent = ready ? caption : '写真を読み込めませんでした。ページを再読み込みしてご確認ください。';
     }
     img.addEventListener('load', update);
     img.addEventListener('error', update);
-    const path = data.photoPath || 'images/yosihiko.png';
+    const path = figure.dataset.photoPath || data.photoPath || 'images/yosihiko.png';
     img.src = path; link.href = path;
     update();
     link.addEventListener('click', event => {
@@ -65,6 +65,7 @@
       dialog.querySelector('img').src = img.src;
       dialog.querySelector('img').alt = img.alt;
       dialog.querySelector('[data-dialog-caption]').textContent = caption;
+      dialog.querySelector('#photo-dialog-title').textContent = figure.dataset.photoTitle || '田中吉彦君の写真';
       dialog.showModal();
       dialog.querySelector('button').focus();
     });
