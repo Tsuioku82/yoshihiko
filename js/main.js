@@ -47,17 +47,20 @@
     if (!img || !link) return;
     const caption = figure.dataset.photoCaption || data.photoCaption || figure.querySelector('figcaption').textContent;
     figure.querySelector('figcaption').textContent = caption;
+    let failed = false;
     function update() {
       const ready = img.complete && img.naturalWidth > 0;
-      link.hidden = !ready;
-      missing.hidden = ready;
+      // 読込待ちの画像を隠すと、遅延読込が始まらないため、エラー時だけ隠す。
+      link.hidden = failed;
+      missing.hidden = !failed;
       if (hint) hint.hidden = !ready;
-      figure.querySelector('figcaption').textContent = ready ? caption : '写真を読み込めませんでした。ページを再読み込みしてご確認ください。';
+      figure.querySelector('figcaption').textContent = failed ? '写真を読み込めませんでした。ページを再読み込みしてご確認ください。' : caption;
     }
-    img.addEventListener('load', update);
-    img.addEventListener('error', update);
+    img.addEventListener('load', () => { failed = false; update(); });
+    img.addEventListener('error', () => { failed = true; update(); });
     const path = figure.dataset.photoPath || data.photoPath || 'images/yosihiko.png';
-    img.src = path; link.href = path;
+    if (img.getAttribute('src') !== path) img.src = path;
+    link.href = path;
     update();
     link.addEventListener('click', event => {
       if (!dialog || typeof dialog.showModal !== 'function') return;
