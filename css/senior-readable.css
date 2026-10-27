@@ -1,0 +1,19 @@
+@charset "UTF-8";
+/* 寺田さんのサイトと同じ、濃いゴシック体と24・28・32pxの本文。 */
+@media screen{
+ :root{--ink:#162c3a;--green:#264858;--red:#385c76;--body-size:24px;--scale:1;--reading-font:"BIZ UDPGothic","Meiryo","Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif}
+ html[data-text-size=large]{--body-size:28px;--scale:1.166667}html[data-text-size=xlarge]{--body-size:32px;--scale:1.333333}
+ body{font-family:var(--reading-font);font-weight:500;line-height:1.95}
+ .brand{font-size:24px;font-weight:700;letter-spacing:.03em}.brand small{font-family:var(--reading-font);font-size:20px;color:var(--ink);letter-spacing:.05em}
+ .tools,.preview-note,.contents,.source-note,.eyebrow,.chapter-label,.page-progress,.footer-links,.button,.zoom-hint,.dialog-header,.photo-missing p{font-family:var(--reading-font)}
+ .tools{font-size:21px;font-weight:700}.tools button{min-height:54px;border-color:#58788e}.preview-note{font-size:20px;color:var(--ink);line-height:1.9}
+ .page-nav a{font-size:22px;color:var(--ink);font-weight:700;line-height:1.8}.page-nav span{color:var(--red)}
+ .hero h1{font-size:1.6rem;font-weight:700;line-height:1.65;letter-spacing:.02em}.subtitle{font-size:1.05rem;font-weight:700;color:var(--ink);line-height:1.9}.hero-intro{color:var(--ink);line-height:1.95}
+ .eyebrow,.chapter-label{font-size:20px;color:var(--red);font-weight:700;letter-spacing:.06em}.contents{font-size:20px;color:var(--ink)}.contents h2{font-size:22px;font-weight:700;line-height:1.8}.contents a{line-height:1.9}
+ .chapter h2{font-size:1.25rem;font-weight:700;line-height:1.7}.chapter h3{font-size:1.1rem;font-weight:700;line-height:1.8}
+ blockquote,.letter{font-size:1.05rem;color:var(--ink);line-height:1.95}.source-note,.photo figcaption,.dialog-caption{font-size:21px;color:var(--ink);line-height:1.9}.references{font-size:21px;line-height:1.9}.zoom-hint{font-size:20px;font-weight:700}.page-progress{font-size:20px;color:var(--ink)}
+ .button{font-weight:700;line-height:1.8}.footer p{font-size:21px;color:var(--ink);line-height:1.95}.footer .footer-title{font-size:24px;font-weight:700}.footer-links{font-size:21px;font-weight:700}.dialog-header{font-size:22px;color:var(--ink);font-weight:700}.dialog-header button{font:inherit;min-height:54px;color:var(--ink);border-width:2px}
+}
+@media screen and (max-width:720px){
+ .brand{font-size:23px}.tools{font-size:20px}.page-nav a{font-size:20px}.hero h1{font-size:1.4rem}.subtitle{font-size:1rem}.chapter h2{font-size:1.16rem}.source-note,.photo figcaption,.dialog-caption,.footer p{font-size:20px}.eyebrow{font-size:20px}.dialog-header p{font-size:22px}
+}
